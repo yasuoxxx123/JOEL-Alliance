@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ticket Modal Example</title>
+	<style>
+        /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+   /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 10px;
+}
+
+label {
+  text-align: right;
+}
+
+input[type="submit"] {
+  grid-column: 2 / 3;
+}
+
+    </style>
+</head>
+<body>
+	<button id="open-ticket-modal-btn">Open Ticket Modal</button>
+	<div id="ticket-modal" class="modal">
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <h2>Create New Ticket</h2>
+	    <form>
+	    	<label for="category">Category:</label>
+	    	<select id="category" name="category">
+	    		<option value="bug">Bug</option>
+	    		<option value="feature">Feature Request</option>
+	    		<option value="other">Other</option>
+	    	</select>
+	    	<br>
+
+	    	<label for="assigned-to">Assigned To:</label>
+	    	<select id="assigned-to" name="assigned-to">
+	    		<option value="john">John</option>
+	    		<option value="jane">Jane</option>
+	    		<option value="jack">Jack</option>
+	    	</select>
+	    	<br>
+
+	    	<label for="subject">Subject:</label>
+	    	<input type="text" id="subject" name="subject"><br>
+
+	    	<label for="file">Upload File:</label>
+	    	<input type="file" id="file" name="file"><br>
+
+	    	<label for="description">Description:</label>
+	    	<textarea id="description" name="description"></textarea><br>
+
+	    	<input type="submit" value="Submit">
+	    </form>
+	  </div>
+	</div>
+
+	<script>
+        var ticketModal = document.getElementById("ticket-modal");
+
+// Get the button that opens the modal
+var openTicketModalBtn = document.getElementById("open-ticket-modal-btn");
+
+// Get the <span> element that closes the modal
+var closeTicketModalBtn = document.getElementsByClassName("close")[0];
+openTicketModalBtn.onclick = function() {
+  ticketModal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+closeTicketModalBtn.onclick = function() {
+  ticketModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == ticketModal) {
+    ticketModal.style.display = "none";
+  }
+}
+    </script>
+</body>
+</html>

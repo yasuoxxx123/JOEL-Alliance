@@ -1,0 +1,103 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family:Arial;
+  }
+  .container{
+    
+    display:grid;
+    place-items:center;
+  }
+ 
+  .box{
+    top:0;
+    position:absolute;
+    width:100vw;
+    height: 100vh;
+    background-color:#f5f5f5;
+    z-index: -1;
+  
+  } 
+  .triangle1{
+    position: fixed;
+    border-left:100vw solid #1E2834 ;
+    border-bottom: 570px solid transparent;
+    z-index: 1;
+  }
+  .triangle2{ 
+     position:fixed;
+     right:0;
+     bottom:0;
+     margin:auto;
+     border-left:95vw solid transparent;
+     border-bottom: 550px solid #ec2224 ;
+     z-index: 1;
+     
+  }
+  img{
+    position:absolute;
+    top:76px;
+    width:250px;
+    height:60;
+    z-index: 1;
+  }
+  .content{
+    padding:50px;
+    margin-top:150px;
+    height:400px;
+    width:450px;
+    background-color: white;
+    z-index:3;
+    text-align:center;
+
+  }
+  
+  .content a{
+    text-decoration:none;
+  }
+  form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+   h1{
+    margin-bottom:20px;
+  }
+ form input{
+    font-size:20px;
+    width:300px;
+    margin-bottom:15px;
+    padding:10px;
+    border: none;
+    background-color: #e8ecf0;
+ }
+ form button{
+    padding:10px;
+    margin-top:30px;
+    margin-bottom:30px;
+    font-size:20px;
+    width:130px;
+    border-radius: 15px;
+    border:none;
+    background-color: #ec2224;
+    color:white;
+ }
+ button:hover{
+    cursor: pointer;
+ }
+ a{
+    color:black;
+ }
+ a, p{
+    font-size:14px;
+ }
+ a:hover{
+    color:#ec2224;
+}
+p{
+    margin-bottom:10px;
+}
+    input:focus::placeholder {
+    color: transparent;
+}

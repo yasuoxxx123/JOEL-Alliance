@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Profile HR Employee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            font-family: 'Arial';
+           
+      
+        }
+       
+     .top{
+     
+        top:0;
+        left:0;
+        right:0;
+        padding:20px;
+        height:100px;
+        width:100vw;
+        background-color: #1E2834 ;
+       z-index: 3;
+     }
+     .sidebar{
+        position:fixed;
+        top:0;
+        height: 100vh;
+        width:250px;
+        background-color: #EC2224 ;
+        z-index: 2;
+     }
+     .links{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+    
+     }
+     .links a:hover{
+        background-color:#f5f5f5;
+        color:red;
+     }
+     
+     .links2 a:hover{
+        background-color:#f5f5f5;
+        color:red;
+     }
+     a{
+        text-decoration:none;
+        color:white;
+        margin-bottom:5px;
+        padding:10px;
+        padding-left:20px
+     }
+     .top img{
+        position:absolute;
+        width:250px;
+        height:60;
+       
+    }
+    
+    .links2{
+        margin-top:250px;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+    
+     }
+    .sidebar i{
+        font-size:70px;
+        
+        color:white;
+    }
+    .profile-name{
+       position:absolute;
+       margin-top:20px;
+       margin-left:15px;
+       color:white;
+    }
+    .profile{
+        padding:20px;
+        margin-left:15px;
+    }
+    .profile-role{
+        font-size:15px;
+        padding-left:20px;
+        color:white;
+    }
+   .main{
+    top:0;
+    position:fixed;
+    height:100vh;
+    width:100vw;
+   background-color: 
+#F5F5F5;
+
+   z-index: 1;
+    
+   }
+   .content{
+    margin-top:140px;
+    margin-left:300px;
+  
+   }
+    #modal-btn{
+    position:absolute;
+    margin-left:700px;
+   }
+   button{
+    width:100px;
+    font-size:15px;
+    padding:10px;
+    border-radius: 10px;
+    border:none;
+    background-color: #EC2224;
+    color:white;
+   }
+   
+   .prof-set{
+    width:800px;
+    margin-left:185px;
+    height:500px;
+    background-color: #FFFFFF;
+    border-radius:10px;
+    padding:30px;
+   }
+   .prof-set h2{
+    text-align: center;
+   }
+   .prof-set img{
+    width:120px;
+    height: 120px;
+   }
+   .prof-content{
+    padding:20px 50px 50px 105px;
+    
+   }
+   .prof-details {
+    position:absolute;
+    top:240px;
+    margin-left:135px;
+
+   }
+   .prof-details p{
+    font-size:13px;
+    margin-top:5px;
+    color:
+#777777;
+   }
+   .edit-details1{
+    display:flex;
+    flex-direction: column;
+   }
+   .edit-details1 input{
+    height:30px;
+    margin-top:5px;
+    margin-bottom:20px;
+    width:250px;
+    background-color: #F0F6F7;
+    padding:5px;
+    background-color: #F0F6F7;
+    border:1px solid #D9D9D9;
+   }
+   .edit-details2 input{
+    height:30px;
+    margin-top:5px;
+    margin-bottom:20px;
+    width:250px;
+    padding:5px;
+    background-color: #F0F6F7;
+    border:1px solid #D9D9D9;
+   }
+   .edit-details2{
+    position:absolute;
+    top:342px;
+    margin-left:280px;
+    display:flex;
+    flex-direction: column;
+   }
+
+   .prof-content label{
+    color: #777777;
+   }
+   .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top: 0;
+    width:100%; /* Full width */
+     height:100%;/* Full height */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+   }
+   .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+    }
+
+/* The Close Button */
+    .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    }
+    
+    input,select{
+        padding:5px;
+        width:260px;
+        margin-bottom:10px;
+        background-color:  #F0F6F7;
+        border:none;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    
+    form label{
+        font-size:15px;
+        display:inline-block;
+       
+    }
+    .modal-content h2{
+      text-align: center;
+      margin-bottom:20px;
+      margin-top:20px;
+
+    }
+    button:hover{
+        cursor: pointer;
+    }
+    #changepass{
+        position:absolute;
+        top:486px;
+        margin-left:380px;
+        width:150px;
+    }
+    .modal-content form{
+        margin-left:50px;
+    }
+    .modal-content button{
+        margin-left:75px;
+    }
+    .pass-details{
+        margin-top:15px;
+        margin-left:75px;
+        font-size:12px;
+        margin-bottom:20px;
+    }
+    .modal-content label{
+        margin-bottom:10px
+    }
+    .active{
+        background-color: #FFFFFF;
+        color:#EC2224;
+    }
+    </style>
+</head>
+<body>
+
+   
+    <div class="sidebar">
+
+            <div class="top">
+                <img src="assets/logos.png">
+            </div>
+
+            <div class="profile"> 
+                <i class="fa fa-user"></i>
+                <span class="profile-name">JOHN DOE,</span>
+                <span class="profile-role">HR Employee</span>
+            </div>
+
+            <div class="links">
+                <a href="Dashboard-HREmployee.html" class="">Dashboard</a>
+                <a href="TicketReport-HREmployee.html" class="">Reports </a>
+                <a href="ListOfUsers-HREmployee.html" class="">Users </a>
+            </div>
+
+            <div class="links2">
+                <a href="#" class="active">Profile</a>
+                <a href="#" class="">Log Out</a>
+            </div>
+
+    </div>
+
+    <div class="main">
+        <div class="content">
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h2>Change Password</h2>
+                  <form method="post">
+                    <label>Current Password</label>
+                    <input type="text">
+                    <label >New Password</label>
+                    
+                    <input type="text">
+                    <label>Confirm New Password</label>
+                    <input type="text">
+                    
+                    <div class="pass-details">
+                        <p style="margin-left:-20px">Password must contain:</p>
+                        
+                        <ul>
+                            <li> At least 1 upper case letter (A-Z) </li>
+                            <li> At least 1 number (0-9)</li>
+                            <li> At least 8 characters.</li>
+                        </ul> 
+                   </div>
+            
+        
+            
+                    <button type="submit" id="save-pass">Save</button> 
+                  </form>
+                </div>
+              </div>
+            <div class="prof-set">
+                <h2>Profile Settings</h2>
+                <div class="prof-content">
+                    <img src="assets/profile-user.png">
+                    <div class="prof-details">
+                    <span>John Doe</span>
+                    <p>HR Employee</p>
+                    <p>johndoe@gmail.com</p>
+                   </div>
+                  
+                       
+                        <form action="" method="post">
+                        <div class="edit-details1">
+                            <label>Name</label>
+                            <input type="text" id="">
+                            <label>Role</label>
+                            <input type="text" id="">
+                           
+                         </div>
+                         <div class="edit-details2">
+                         <label>Email Address</label>
+                        <input type="email" id="">
+                       
+                           
+                            <label>Department</label>
+                            <input type="text"id="">
+                        </div>
+
+                        <button style="background-color: #777777;">Edit Profile</button>
+                        
+                      </form>
+                      <button id="changepass">Change Password</button>
+                </div>
+
+            </div>
+
+                
+            
+
+            
+        </div>
+
+        
+
+    </div>
+    
+
+    <script>
+        var modal = document.getElementById("modal");
+
+        
+        var btn = document.getElementById("changepass");
+
+       
+        var span = document.getElementsByClassName("close")[0];
+
+        
+        btn.onclick = function() {
+        modal.style.display = "block";
+        }
+
+    
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+
+       
+        window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+        }
+        }
+    </script>
+ 
+   
+    
+</body>
+</html>

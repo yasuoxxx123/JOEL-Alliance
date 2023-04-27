@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CategoryList HR Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            font-family: 'Arial';
+           
+      
+        }
+       
+     .top{
+     
+        top:0;
+        left:0;
+        right:0;
+        padding:20px;
+        height:100px;
+        width:100vw;
+        background-color: #1E2834 ;
+       z-index: 3;
+     }
+     .sidebar{
+        position:fixed;
+        top:0;
+        height: 100vh;
+        width:250px;
+        background-color: #EC2224 ;
+        z-index: 2;
+     }
+     .links{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+    
+     }
+     .links a:hover{
+        background-color:#f5f5f5;
+        color:red;
+     }
+     
+     .links2 a:hover{
+        background-color:#f5f5f5;
+        color:red;
+     }
+     a{
+        text-decoration:none;
+        color:white;
+        margin-bottom:5px;
+        padding:10px;
+        padding-left:20px
+     }
+     .top img{
+        position:absolute;
+        width:250px;
+        height:60;
+       
+    }
+    
+    .links2{
+        margin-top:150px;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+    
+     }
+    .sidebar i{
+        font-size:70px;
+        
+        color:white;
+    }
+    .profile-name{
+       position:absolute;
+       margin-top:20px;
+       margin-left:15px;
+       color:white;
+    }
+    .profile{
+        padding:20px;
+        margin-left:15px;
+    }
+    .profile-role{
+        font-size:15px;
+        padding-left:20px;
+        color:white;
+    }
+   .main{
+    top:0;
+    position:fixed;
+    height:100vh;
+    width:100vw;
+   background-color: 
+#F5F5F5;
+overflow: auto;
+   z-index: 1;
+    
+   }
+   .content{
+    margin-top:140px;
+    margin-left:300px;
+    padding-right:50px;
+   }
+    #addCat-btn{
+    position:absolute;
+    right:50px;
+   }
+   button{
+    width:100px;
+    font-size:15px;
+    padding:10px;
+    border-radius: 10px;
+    border:none;
+    background-color: #EC2224;
+    color:white;
+   }
+   .tick span{
+    font-size:30px;
+   }
+   .content table{
+   margin-top:50px;
+   border-collapse:collapse;
+   width:100%;
+   }
+   .content table th{
+   padding:10px;
+   width:150px;
+   background-color: #D9D9D9;
+    
+   }
+   .content table td{
+    text-align:center;
+    padding:10px;
+    border-bottom: 2px solid#ABABAB ;
+   }
+   .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top: 0;
+    width:100%; /* Full width */
+     height:100%;/* Full height */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+   }
+   .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px; /* Could be more or less, depending on screen size */
+    }
+
+
+/* The Close Button */
+    .addCat-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
+    .addCat-close:hover,
+    .addCat-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    }
+    .editCat-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
+    .editCat-close:hover,
+    .editCat-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    }
+    
+    input,select{
+        padding:5px;
+        margin-right:20px;
+        width:260px;
+        height:35px;
+        margin-bottom:20px;
+        background-color:  #F0F6F7;
+        border:none;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    textarea{
+        width:260px;
+        margin-bottom:20px;
+        border:none;
+        padding:5px;
+        background-color:  #F0F6F7;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    form label{
+        font-size:15px;
+        display:inline-block;
+       
+     
+    }
+    .modal-content h2{
+      text-align: center;
+      margin-bottom:10px;
+
+    }
+    button:hover{
+        cursor: pointer;
+    }
+    .modal-content .content-div{
+        display:flex;
+        flex-direction: column;
+        padding-left: 50px;
+    }
+    .modal-content button{
+        margin-left:50px;
+    }
+    a.active{
+        background-color: #FFFFFF;
+        color:#EC2224
+    }
+
+    </style>
+</head>
+<body>
+
+   
+    <div class="sidebar">
+
+            <div class="top">
+                <img src="assets/logos.png">
+            </div>
+
+            <div class="profile"> 
+                <i class="fa fa-user"></i>
+                <span class="profile-name">JOHN DOE,</span>
+                <span class="profile-role">HR Admin</span>
+            </div>
+
+            <div class="links">
+                <a href="Dashboard-HRAdmin.html" class="">Dashboard</a>
+                <a href="TicketList-HRAdmin.html" class="">Ticket List</a>
+                <a href="TicketReport-HRAdmin.html" class="">Reports </a>
+                <a href="ListOfUser-HRAdmin.html" class="">Users </a>
+                <a href="#" class="active">Request Categories </a>
+            </div>
+
+            <div class="links2">
+                <a href="ViewProfile-HRAdmin.html" class="">Profile</a>
+                <a href="#" class="">Log Out</a>
+            </div>
+
+    </div>
+
+    <div class="main">
+        <div class="content">
+            <div class="tick">
+                <span>Category</span>
+                <button id="addCat-btn" style="width:120px;">Add Category</button>
+                <div id="addCat-modal" class="modal">
+                    <div class="modal-content">
+                      <span class="addCat-close" >&times;</span>
+                      <h2>Add Category</h2>
+                      <div class="content-div">
+                      <form method="post">
+                        <label>Category Name</label>
+                        <input type="text">
+                        <label>Category Description</label>
+                        <textarea rows="4" style="resize:none;"></textarea>
+
+                        <label>Default Assignee</label>
+                        <select name="role" id="role">
+                            <option value="John Doe">John Doe</option>
+                            <option value="John Doe">John Doe</option>
+                            <option value="John Doe">John Doe</option>
+                            <option value="John Doe">John Doe</option>
+        
+                        </select>
+                    
+                    </div>
+                       
+                        <button type="button" style="background-color:#D9D9D9;" onclick="document.getElementById('addCat-modal').style.display='none'">Cancel</button>
+                        <button type="submit" style="width:120px;">Add Category</button> 
+                        
+                      </form>
+                    </div>
+                  </div>
+
+                
+            </div>
+
+            <div id="editCat-modal" class="modal">
+                <div class="modal-content">
+                  <span class="editCat-close">&times;</span>
+                  <h2>Edit Category</h2>
+                  <div class="content-div">
+                  <form method="post">
+                    <label>Category Name</label>
+                    <input type="text">
+                    <label>Category Description</label>
+                    <textarea rows="4" style="resize:none;"></textarea>
+
+                    <label>Default Assignee</label>
+                    <select name="role" id="role">
+                        <option value="John Doe">John Doe</option>
+                        <option value="John Doe">John Doe</option>
+                        <option value="John Doe">John Doe</option>
+                        <option value="John Doe">John Doe</option>
+    
+                    </select>
+            
+                </div>
+                   
+                    <button type="button" style="background-color:#D9D9D9;" onclick="document.getElementById('editCat-modal').style.display='none'">Cancel</button>
+                    <button type="submit" style="width:120px;">Save Changes</button>    
+                    
+                  </form>
+                </div>
+              </div>
+
+              <div id="delete-cat" class="modal">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <form class="modal-content">
+                  <div class="container">
+                    <h1>Delete Category</h1>
+                    <p>Are you sure you want to delete this category?</p>
+              
+                    <div class="clearfix">
+                      <button type="button"  style="background-color:#D9D9D9;" onclick="document.getElementById('delete-cat').style.display='none'" class="cancelbtn">Cancel</button>
+                      <button type="button" class="deletebtn">Delete</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            <table>
+                <tbody>
+                <thead>
+                <th>ID</th>
+                <th>Default Assignee</th>
+                <th>Description</th>
+                <th>Category Name</th>
+                <th>Action</th>
+                </thead>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Description</td>
+                    <td>Support</td>
+                    <td>
+                     <img src="assets/edit.svg" onclick="document.getElementById('editCat-modal').style.display='block'">
+                     <img src="assets/delete.svg" onclick="document.getElementById('delete-cat').style.display='block'">
+                    </td>
+                     </tr>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Description</td>
+                    <td>Support</td>
+                    <td>
+                        <img src="assets/edit.svg" onclick="document.getElementById('editCat-modal').style.display='block'">
+                        <img src="assets/delete.svg"  onclick="document.getElementById('delete-cat').style.display='block'">
+                       </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Description</td>
+                    <td>Support</td>
+                    <td>
+                        <img src="assets/edit.svg" onclick="document.getElementById('editCat-modal').style.display='block'">
+                        <img src="assets/delete.svg"  onclick="document.getElementById('delete-cat').style.display='block'">
+                       </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Description</td>
+                    <td>Support</td>
+                    <td>
+                        <img src="assets/edit.svg"onclick="document.getElementById('editCat-modal').style.display='block'">
+                        <img src="assets/delete.svg"  onclick="document.getElementById('delete-cat').style.display='block'">
+                       </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Description</td>
+                    <td>Support</td>
+                    <td>
+                        <img src="assets/edit.svg" onclick="document.getElementById('editCat-modal').style.display='block'">
+                        <img src="assets/delete.svg"  onclick="document.getElementById('delete-cat').style.display='block'">
+                       </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Description</td>
+                    <td>Support</td>
+                    <td>
+                        <img src="assets/edit.svg" onclick="document.getElementById('editCat-modal').style.display='block'">
+                        <img src="assets/delete.svg"  onclick="document.getElementById('delete-cat').style.display='block'">
+                       </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Description</td>
+                    <td>Support</td>
+                    <td>
+                        <img src="assets/edit.svg" onclick="document.getElementById('editCat-modal').style.display='block'">
+                        <img src="assets/delete.svg"  onclick="document.getElementById('delete-cat').style.display='block'">
+                       </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Description</td>
+                    <td>Support</td>
+                    <td>
+                        <img src="assets/edit.svg" onclick="document.getElementById('editCat-modal').style.display='block'">
+                        <img src="assets/delete.svg" onclick="document.getElementById('delete-cat').style.display='block'">
+                       </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Description</td>
+                    <td>Support</td>
+                    <td>
+                        <img src="assets/edit.svg" onclick="document.getElementById('editCat-modal').style.display='block'">
+                        <img src="assets/delete.svg" onclick="document.getElementById('delete-cat').style.display='block'">
+                       </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Description</td>
+                    <td>Support</td>
+                    <td>
+                        <img src="assets/edit.svg" onclick="document.getElementById('editCat-modal').style.display='block'">
+                        <img src="assets/delete.svg" onclick="document.getElementById('delete-cat').style.display='block'">
+                       </td>
+                </tr>
+        
+                </tbody>
+            </table>
+        </div>
+
+        
+
+    </div>
+    <script>
+        //ADD USER
+        var addCatModal = document.getElementById("addCat-modal");
+        var addCatBtn = document.getElementById("addCat-btn");
+        var addCatClose = document.getElementsByClassName("addCat-close")[0];
+    
+        addCatBtn.onclick = function() {
+        addCatModal.style.display = "block";
+        }
+    
+        addCatClose.onclick = function() {
+        addCatModal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+        if (event.target == addCatModal) {
+        addCatModal.style.display = "none";
+         }
+        }
+        ///////////////////////////////////////////////////////////////////////
+
+        //EDIT USER
+        var editCatModal = document.getElementById("editCat-modal");
+        var editCatBtn = document.getElementById("editCat-btn");
+        var editCatClose = document.getElementsByClassName("editCat-close")[0];
+    
+    
+        editCatClose.onclick = function() {
+            editCatModal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+        if (event.target == editCatModal) {
+            editCatModal.style.display = "none";
+         }
+        }
+        /////////////////////////////////////////////////////////////////////
+        //DELETE USER
+        var modal = document.getElementById('delete-user');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+    </script>
+
+
+ 
+   
+    
+</body>
+</html>
